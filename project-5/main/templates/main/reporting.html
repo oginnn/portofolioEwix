@@ -1,0 +1,54 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %} My Reports {% endblock %}
+
+{% block content %}
+<div id="main">
+    <section id="one">
+        <h2>My All Reports</h2>
+        <div class="row">
+            {% for r in reporting|dictsort:'date' reversed %}
+            {% if r.is_active %}
+            <article class="col-6 col-12-xsmall work-item">
+                {% if r.image_one %}
+                <a href="{% url 'main:reporting' slug=r.slug %}"><img src="{{r.image_one.url}}" alt="" height="300" width="400"></a>
+                {% else %}
+                <a href="{% url 'main:reporting' slug=r.slug %}"><img src="{{r.video.url}}" alt="" height="300" width="400"></a>
+                {% endif %}
+                <h4></h4>
+                <h5>{{r.name}}</h5>
+                <p>{{r.date.date}}</p>
+            </article>
+            {% endif %}
+            {% endfor %}
+        </div>
+        
+        {% if is_paginated %}
+        <ul style="display: flexbox; margin-left: 280px;">
+            
+            {% if page_obj.has_previous %}
+                <a style="margin-right: 10px;" href="{% url 'main:reports' page_obj.previous_page_number %}">Previous</a>
+            {% else %}
+                <a style="margin-right: 10px;">Previous</a>
+            {% endif %}
+            
+            {% for page in paginator.page_range %}
+            {% if page is page_obj.number %}
+                <span style="margin-right: 10px;" href="#">{{page}}</span>
+            {% else %}
+                <a style="margin-right: 10px;" href="{% url 'main:reports' page %}">{{page}}</a>
+            {% endif %}
+            {% endfor %}
+                
+            {% if page_obj.has_next %}
+                <a style="margin-right: 10px;" href="{% url 'main:reports' page_obj.next_page_number %}">Next</a>
+            {% else %}
+                <a style="margin-right: 10px;">Next</a>
+            {% endif %}
+        </ul>
+        {% endif %}
+    </section>
+</div>
+{% endblock %}
+

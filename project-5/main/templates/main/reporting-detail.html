@@ -1,0 +1,68 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %} Reporting Result {% endblock %}
+
+{% block content %}
+<div id="main">
+    <section id="two">
+        <div class="slideshow-container">
+
+            <!-- Full-width images with number and caption text -->
+            {% if object.image_one %}
+            <div class="mySlides fade">
+              <div class="numbertext">1 / 4</div>
+              <img src="{{object.image_one.url}}" alt="" height="400" width="600" class="center" >
+            </div>
+            {% if object.video %}
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            {% endif %}
+            {% endif %}
+          
+            {% if object.image_two %}
+            <div class="mySlides fade">
+              <div class="numbertext">2 / 4</div>
+              <img src="{{object.image_two.url}}" alt="" height="400" width="600" class="center" >
+            </div>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            {% endif %}
+          
+            {% if object.image_three %}
+            <div class="mySlides fade">
+              <div class="numbertext">3 / 4</div>
+              <img src="{{object.image_three.url}}" alt="" height="400" width="600" class="center" >
+            </div>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            {% endif %}
+
+            {% if object.image_four %}
+            <div class="mySlides fade">
+              <div class="numbertext">4 / 4</div>
+              <img src="{{object.image_four.url}}" alt="" height="400" width="600" class="center" >
+            </div>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            {% endif %}
+
+            {% if object.video %}
+            <div class="mySlides fade">
+                <video height="400" width="600" class="center" controls autoplay>
+                    <source src="{{object.video.url}}" type="video/mp4">
+                </video>
+            </div>
+            {% endif %}
+            
+          </div>
+          <br>
+          
+        <h3></h3>
+        <p>{{object.body}}</p>
+        <ul class="actions">
+            <li><a href="{{object.source}}" class="button">Source</a></li>
+        </ul>
+    </section>
+</div>
+{% endblock %}

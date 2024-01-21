@@ -1,0 +1,20 @@
+{% load static %}
+
+<footer id="footer">
+    <div class="inner">
+        <ul class="icons">
+            <li><a href="https://twitter.com/faishalprtm" class="icon brands fa-twitter" target="_blank"><span class="label">Twitter</span></a></li>
+            <li><a href="https://linkedin.com/in/faishalprtm" class="icon brands fa-linkedin" target="_blank"><span class="label">linkedin</span></a></li>
+            <li><a href="https://instagram.com/faishalprtm" class="icon brands fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+            <li><a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&to=faishalprtm@gmail.com" class="icon solid fa-envelope"><span class="label" target="_blank">Email</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li><a href="{% url 'main:home' %}">Home</a></li>
+            <li><a href="{% url 'main:home' %}#contactme">Contact Me</a></li>
+            <li><a href="{% url 'main:certificate' %}">My Certificates</a></li>
+        </ul>
+        <ul class="copyright">
+            <li><a download href="{{me.userprofile.cv.url}}" class="btn btnPrimary">Download CV</a></li>
+        </ul>
+    </div>
+</footer>

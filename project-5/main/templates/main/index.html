@@ -1,0 +1,81 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %} Faishal's Portfolio {% endblock %}
+
+{% block content %}
+<!-- Main -->
+<div id="main">
+
+    <!-- One -->
+        <section id="one">
+            <header class="major">
+                <h2>About Me</h2>
+            </header>
+            <p>{{me.userprofile.bio}}</p>
+        </section>
+
+    <!-- Two -->
+        <section id="two">
+            <h2>Recent Work</h2>
+            <div class="row">
+            {% for a in reporting_results|dictsort:'date' reversed %}
+            {% if a.is_active %}
+                <article class="col-6 col-12-xsmall work-item">
+                    {% if a.image_one %}
+                   <a href="{% url 'main:reporting' slug=a.slug %}"><img src="{{a.image_one.url}}" alt="" height="300" width="400"></a>
+                   {% else %}
+                   <a href="{% url 'main:reporting' slug=a.slug %}"><img src="{{a.video.url}}" alt="" height="300" width="400"></a>
+                   {% endif %}
+                    <h4></h4>
+                    <h5>{{a.name}}</h5>
+                    <p>{{a.date.date}}</p>
+                </article>
+            {% endif %}
+            {% endfor %}
+            </div>
+            <ul class="actions">
+                <li><a href="{% url 'main:reports' 1 %}" class="button">View All</a></li>
+            </ul>
+        </section>
+
+    <!-- Three -->
+        <section id="three">
+            <h2 id="contactme">Get In Touch</h2>
+            <p>Hello! If you want to contact me or want to provide feedback about my work, you can send a message via the column listed or the contact provided below. Thank You!</p>
+            <div class="row">
+                <div class="col-8 col-12-small">
+                    <form id="contactForm" method="post" action="{% url 'main:contact_view' %}">
+                        {% csrf_token %}
+                        <div class="row gtr-uniform gtr-50">
+                            <div class="col-6 col-12-xsmall"><input type="text" name="name" id="name" placeholder="Name" /></div>
+                            <div class="col-6 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Email" /></div>
+                            <div class="col-12"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
+                        </div>
+                        <br>
+                        <ul class="actions">
+                            <li><input type="submit" value="Send Message" /></li>
+                        </ul>
+                    </form>
+                    {% include 'main/partials/message.html' %}
+                </div>
+                <div class="col-4 col-12-small">
+                    <ul class="labeled-icons">
+                        <li>
+                            <h3 class="icon solid fa-home"><span class="label">Address</span></h3>
+                            H. Liun Street No. 86a Petukangan Utara, Pesanggrahan, Jakarta Selatan, 12260
+                        </li>
+                        <li>
+                            <h3 class="icon solid fa-mobile-alt"><span class="label">Phone</span></h3>
+                            +62 851 5632 5387
+                        </li>
+                        <li>
+                            <h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
+                            faishalprtm@gmail.com
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+</div>
+{% endblock%}

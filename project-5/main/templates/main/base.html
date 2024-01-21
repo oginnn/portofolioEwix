@@ -1,0 +1,32 @@
+{% load static %}
+<html>
+    <head>
+		<title>{% block title %}{% endblock %}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+		<link rel="stylesheet" href="{% static 'assets/css/slider.css' %}" />
+	</head>
+    <body class="is-preload">
+		<header id="header">
+			<div class="inner">
+				<img class="image avatar" src="{{me.userprofile.avatar.url}}" alt="">
+				<h1><strong>{{me.first_name}} {{me.last_name}}</strong></h1>
+				<h4>{{me.userprofile.title}}</h4>
+			</div>
+		</header>
+		
+        {% block content %}
+        {% endblock %}
+
+        {% include 'main/partials/footer.html' %}
+
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+		<script src="{% static 'assets/js/jquery.poptrox.min.js' %}"></script>
+		<script src="{% static 'assets/js/browser.min.js' %}"></script>
+		<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+		<script src="{% static 'assets/js/util.js' %}"></script>
+		<script src="{% static 'assets/js/main.js' %}"></script>
+		<script src="{% static 'assets/js/slider.js' %}"></script>
+    </body>
+</html>
